@@ -17,9 +17,9 @@ public class Position {
     @Getter
     private int y;
     @Getter
-    private String p;
+    private Direction p;
 
-    public Position(int x, int y, String p) {
+    public Position(int x, int y, Direction p) {
         this.x = x;
         this.y = y;
         this.p = p;

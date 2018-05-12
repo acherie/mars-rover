@@ -12,7 +12,7 @@ public class PositionTest {
     @Test
     public void Position_ShouldConcat_WhenInit() {
         // given
-        Position position = new Position(0, 0, "N");
+        Position position = new Position(0, 0, Direction.N);
         // when
         String positionStr = position.position();
         // then
