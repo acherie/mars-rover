@@ -29,4 +29,25 @@ public class MarsRoverTest {
         // then
         assertThat(rover.position()).isEqualTo("0 0 W");
     }
+
+    @Test
+    public void shouldSouthWhenTurnLeftInWest() {
+        MarsRover rover = new MarsRover(0, 0, Direction.W);
+        rover.exec(new LeftCommand());
+        assertThat(rover.position()).isEqualTo("0 0 S");
+    }
+
+    @Test
+    public void shouldEastWhenSouthTurnLeft() {
+        MarsRover rover = new MarsRover(0, 0, Direction.S);
+        rover.exec(new LeftCommand());
+        assertThat(rover.position()).isEqualTo("0 0 E");
+    }
+
+    @Test
+    public void shouldNorthWhenEastTurnLeft() {
+        MarsRover rover = new MarsRover(0, 0, Direction.E);
+        rover.exec(new LeftCommand());
+        assertThat(rover.position()).isEqualTo("0 0 N");
+    }
 }
