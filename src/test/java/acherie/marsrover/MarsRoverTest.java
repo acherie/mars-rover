@@ -19,4 +19,14 @@ public class MarsRoverTest {
         // then
         assertThat(position).isEqualTo("0 0 N");
     }
+
+    @Test
+    public void shouldNWhenLInN() {
+        // given
+        MarsRover rover = new MarsRover(0, 0, Direction.N);
+        // when
+        rover.exec(new LeftCommand());
+        // then
+        assertThat(rover.position()).isEqualTo("0 0 W");
+    }
 }

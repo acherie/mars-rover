@@ -1,11 +1,16 @@
 package acherie.marsrover;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * @author wangjie
  * @date 2018/5/12
  */
 public class MarsRover {
 
+    @Getter
+    @Setter
     private Position position;
 
     public MarsRover(int x, int y, Direction direction) {
@@ -14,5 +19,10 @@ public class MarsRover {
 
     public String position() {
         return position.position();
+    }
+
+    public void exec(LeftCommand command) {
+        command.setRover(this);
+        command.exec();
     }
 }

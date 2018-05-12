@@ -17,15 +17,15 @@ public class Position {
     @Getter
     private int y;
     @Getter
-    private Direction p;
+    private Direction direction;
 
-    public Position(int x, int y, Direction p) {
+    public Position(int x, int y, Direction direction) {
         this.x = x;
         this.y = y;
-        this.p = p;
+        this.direction = direction;
     }
 
     public String position() {
-        return String.format("%d %d %s", this.x, this.y, this.p);
+        return String.format("%d %d %s", this.x, this.y, this.direction);
     }
 }
