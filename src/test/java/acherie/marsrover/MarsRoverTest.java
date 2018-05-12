@@ -1,6 +1,7 @@
 package acherie.marsrover;
 
 import acherie.marsrover.command.LeftCommand;
+import acherie.marsrover.command.MoveCommand;
 import acherie.marsrover.command.RightCommand;
 import org.junit.Test;
 
@@ -73,5 +74,12 @@ public class MarsRoverTest {
         MarsRover rover = new MarsRover(0, 0, original);
         rover.exec(new RightCommand());
         assertThat(rover.position()).isEqualTo("0 0 " + target);
+    }
+
+    @Test
+    public void shouldYPlus1WhenNorthMove() {
+        MarsRover rover = new MarsRover(0, 0, N);
+        rover.exec(new MoveCommand());
+        assertThat(rover.position()).isEqualTo("0 1 " + N);
     }
 }

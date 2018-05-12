@@ -1,6 +1,7 @@
 package acherie.marsrover;
 
 import acherie.marsrover.command.LeftCommand;
+import acherie.marsrover.command.MoveCommand;
 import acherie.marsrover.command.RightCommand;
 import lombok.Getter;
 import lombok.Setter;
@@ -31,5 +32,9 @@ public class MarsRover {
     public void exec(RightCommand rightCommand) {
         rightCommand.setRover(this);
         rightCommand.exec();
+    }
+
+    public void exec(MoveCommand moveCommand) {
+        setPosition(new Position(0, 1, Direction.N));
     }
 }

@@ -28,4 +28,8 @@ public class Position {
     public String position() {
         return String.format("%d %d %s", this.x, this.y, this.direction);
     }
+
+    public Position turn(Direction direction) {
+        return new Position(this.x, this.y, direction);
+    }
 }
