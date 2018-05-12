@@ -46,4 +46,30 @@ public class MarsRoverTest {
         rover.exec(new LeftCommand());
         assertThat(rover.position()).isEqualTo("0 0 " + target);
     }
+
+    @Test
+    public void shouldEastWhenNorthTurnRight() {
+        testTurnRightCommand(N, E);
+    }
+
+    @Test
+    public void shouldSouthWhenEastTurnRight() {
+        testTurnRightCommand(E, S);
+    }
+
+    @Test
+    public void shouldWestWhenSouthTurnRight() {
+        testTurnRightCommand(S, W);
+    }
+
+    @Test
+    public void shouldNorthWhenWestTurnRight() {
+        testTurnRightCommand(W, N);
+    }
+
+    private void testTurnRightCommand(Direction original, Direction target) {
+        MarsRover rover = new MarsRover(0, 0, original);
+        rover.exec(new RightCommand());
+        assertThat(rover.position()).isEqualTo("0 0 " + target);
+    }
 }

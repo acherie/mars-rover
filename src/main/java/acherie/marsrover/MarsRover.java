@@ -21,8 +21,13 @@ public class MarsRover {
         return position.position();
     }
 
-    public void exec(LeftCommand command) {
-        command.setRover(this);
-        command.exec();
+    public void exec(LeftCommand leftCommand) {
+        leftCommand.setRover(this);
+        leftCommand.exec();
+    }
+
+    public void exec(RightCommand rightCommand) {
+        rightCommand.setRover(this);
+        rightCommand.exec();
     }
 }
