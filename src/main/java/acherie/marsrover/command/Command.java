@@ -1,4 +1,4 @@
-package acherie.marsrover;
+package acherie.marsrover.command;
 
 /**
  * @author wangjie

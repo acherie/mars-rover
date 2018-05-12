@@ -1,28 +1,28 @@
-package acherie.marsrover;
+package acherie.marsrover.command;
 
-import static acherie.marsrover.Direction.*;
+import acherie.marsrover.Direction;
 
 /**
  * @author wangjie
  * @date 2018/5/12
  */
-public class RightCommand extends AbstractDirectionCommand {
+public class LeftCommand extends AbstractDirectionCommand {
 
     @Override
     protected Direction turnDirection(Direction direction) {
         Direction newDirection;
         switch (direction) {
             case N:
-                newDirection = E;
-                break;
-            case E:
-                newDirection = S;
-                break;
-            case S:
-                newDirection = W;
+                newDirection = Direction.W;
                 break;
             case W:
-                newDirection = N;
+                newDirection = Direction.S;
+                break;
+            case S:
+                newDirection = Direction.E;
+                break;
+            case E:
+                newDirection = Direction.N;
                 break;
             default:
                 newDirection = direction;

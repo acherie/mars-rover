@@ -1,5 +1,7 @@
 package acherie.marsrover;
 
+import acherie.marsrover.command.LeftCommand;
+import acherie.marsrover.command.RightCommand;
 import org.junit.Test;
 
 import static acherie.marsrover.Direction.*;
