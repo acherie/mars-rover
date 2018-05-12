@@ -2,6 +2,7 @@ package acherie.marsrover;
 
 import org.junit.Test;
 
+import static acherie.marsrover.Direction.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
@@ -13,7 +14,7 @@ public class MarsRoverTest {
     @Test
     public void shouldAtRightPositionWhenInit() {
         // given
-        MarsRover rover = new MarsRover(0, 0, Direction.N);
+        MarsRover rover = new MarsRover(0, 0, N);
         // when
         String position = rover.position();
         // then
@@ -22,32 +23,27 @@ public class MarsRoverTest {
 
     @Test
     public void shouldNWhenLInN() {
-        // given
-        MarsRover rover = new MarsRover(0, 0, Direction.N);
-        // when
-        rover.exec(new LeftCommand());
-        // then
-        assertThat(rover.position()).isEqualTo("0 0 W");
+        testTurnLeftCommand(N, W);
     }
 
     @Test
     public void shouldSouthWhenTurnLeftInWest() {
-        MarsRover rover = new MarsRover(0, 0, Direction.W);
-        rover.exec(new LeftCommand());
-        assertThat(rover.position()).isEqualTo("0 0 S");
+        testTurnLeftCommand(W, S);
     }
 
     @Test
     public void shouldEastWhenSouthTurnLeft() {
-        MarsRover rover = new MarsRover(0, 0, Direction.S);
-        rover.exec(new LeftCommand());
-        assertThat(rover.position()).isEqualTo("0 0 E");
+        testTurnLeftCommand(S, E);
     }
 
     @Test
     public void shouldNorthWhenEastTurnLeft() {
-        MarsRover rover = new MarsRover(0, 0, Direction.E);
+        testTurnLeftCommand(E, N);
+    }
+
+    private void testTurnLeftCommand(Direction original, Direction target) {
+        MarsRover rover = new MarsRover(0, 0, original);
         rover.exec(new LeftCommand());
-        assertThat(rover.position()).isEqualTo("0 0 N");
+        assertThat(rover.position()).isEqualTo("0 0 " + target);
     }
 }
