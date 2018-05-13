@@ -13,11 +13,11 @@ import lombok.ToString;
 public class Position {
 
     @Getter
-    private int x;
+    private final int x;
     @Getter
-    private int y;
+    private final int y;
     @Getter
-    private Direction direction;
+    private final Direction direction;
 
     public Position(int x, int y, Direction direction) {
         this.x = x;
@@ -35,5 +35,9 @@ public class Position {
 
     public Position moveX(int i) {
         return new Position(this.x + i, this.y, this.direction);
+    }
+
+    public Position moveY(int i) {
+        return new Position(this.x, this.y + i, this.direction);
     }
 }

@@ -59,4 +59,31 @@ public class PositionTest {
                 .extracting(Position::getX, Position::getY, Position::getDirection)
                 .contains(position.getX() + 9, position.getY(), position.getDirection());
     }
+
+    @Test
+    public void shouldYPlus1WhenMove1() {
+        Position position = new Position(0, 0, N);
+        Position newPosition = position.moveY(1);
+        assertThat(newPosition)
+                .extracting(Position::getX, Position::getY, Position::getDirection)
+                .containsExactly(position.getX(), position.getY() + 1, position.getDirection());
+    }
+
+    @Test
+    public void shouldYPlus0WhenMove0() {
+        Position position = new Position(0, 0, N);
+        Position newPosition = position.moveY(0);
+        assertThat(newPosition)
+                .extracting(Position::getX, Position::getY, Position::getDirection)
+                .containsExactly(position.getX(), position.getY(), position.getDirection());
+    }
+
+    @Test
+    public void shouldYPlus2WhenMove2() {
+        Position position = new Position(0, 0, N);
+        Position newPosition = position.moveY(2);
+        assertThat(newPosition)
+                .extracting(Position::getX, Position::getY, Position::getDirection)
+                .containsExactly(position.getX(), position.getY() + 2, position.getDirection());
+    }
 }
