@@ -35,6 +35,7 @@ public class MarsRover {
     }
 
     public void exec(MoveCommand moveCommand) {
-        setPosition(new Position(0, 1, Direction.N));
+        moveCommand.setRover(this);
+        moveCommand.exec();
     }
 }
