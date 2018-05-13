@@ -61,6 +61,15 @@ public class PositionTest {
     }
 
     @Test
+    public void shouldXMinus2WhenMoveN2() {
+        Position position = new Position(0, 0, N);
+        Position newPosition = position.moveX(-2);
+        assertThat(newPosition)
+                .extracting(Position::getX, Position::getY, Position::getDirection)
+                .contains(position.getX() - 2, position.getY(), position.getDirection());
+    }
+
+    @Test
     public void shouldYPlus1WhenMove1() {
         Position position = new Position(0, 0, N);
         Position newPosition = position.moveY(1);
@@ -85,5 +94,14 @@ public class PositionTest {
         assertThat(newPosition)
                 .extracting(Position::getX, Position::getY, Position::getDirection)
                 .containsExactly(position.getX(), position.getY() + 2, position.getDirection());
+    }
+
+    @Test
+    public void shouldYMinus2WhenMoveN2() {
+        Position position = new Position(0, 0, N);
+        Position newPosition = position.moveY(-2);
+        assertThat(newPosition)
+                .extracting(Position::getX, Position::getY, Position::getDirection)
+                .containsExactly(position.getX(), position.getY() + (-2), position.getDirection());
     }
 }
