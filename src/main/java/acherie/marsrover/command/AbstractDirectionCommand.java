@@ -22,7 +22,7 @@ public abstract class AbstractDirectionCommand implements Command {
 
         Direction newDirection = turnDirection(direction);
 
-        Position newPosition = new Position(position.getX(), position.getY(), newDirection);
+        Position newPosition = position.turn(newDirection);
         rover.setPosition(newPosition);
     }
 
