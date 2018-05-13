@@ -32,4 +32,8 @@ public class Position {
     public Position turn(Direction direction) {
         return new Position(this.x, this.y, direction);
     }
+
+    public Position moveX(int i) {
+        return new Position(this.x + i, this.y, this.direction);
+    }
 }

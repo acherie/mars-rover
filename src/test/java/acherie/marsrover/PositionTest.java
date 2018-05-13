@@ -41,4 +41,22 @@ public class PositionTest {
         // then
         assertThat(newPosition.position()).isEqualTo("0 0 " + N);
     }
+
+    @Test
+    public void shouldXPlus1WhenXMove1() {
+        Position position = new Position(0, 0, N);
+        Position newPosition = position.moveX(1);
+        assertThat(newPosition)
+                .extracting(Position::getX, Position::getY, Position::getDirection)
+                .contains(position.getX() + 1, position.getY(), position.getDirection());
+    }
+
+    @Test
+    public void shouldXPlus9WhenMove9() {
+        Position position = new Position(0, 0, N);
+        Position newPosition = position.moveX(9);
+        assertThat(newPosition)
+                .extracting(Position::getX, Position::getY, Position::getDirection)
+                .contains(position.getX() + 9, position.getY(), position.getDirection());
+    }
 }
