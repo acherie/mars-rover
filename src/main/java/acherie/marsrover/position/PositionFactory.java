@@ -11,6 +11,10 @@ public class PositionFactory {
 
     private PositionFactory() {}
 
+    public static Position position(int x, int y) {
+        return new Position(x, y);
+    }
+
     public static DirectionPosition north(int x, int y) {
         return new NorthPosition(x, y);
     }

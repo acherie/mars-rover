@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import static acherie.marsrover.Direction.*;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.catchThrowableOfType;
 
 /**
  * @author wangjie
@@ -109,5 +110,19 @@ public class MarsRoverTest {
         MarsRover rover = new MarsRover();
         rover.setCoordinate(3, 4);
         assertThat(rover.coordinate()).isEqualTo("3 4");
+    }
+
+    @Test
+    public void shouldDefaultLowerLeft00() {
+        assertThat(MarsRover.DEFAULT_LOWER_LEFT_COORDINATE.position()).isEqualTo("0 0");
+    }
+
+    @Test
+    public void shouldThrowIllegalArgumentExceptionWhenSet00Coordinate() {
+        MarsRover rover = new MarsRover();
+        IllegalArgumentException illegalArgumentException =
+                catchThrowableOfType(() -> rover.setCoordinate(0, 0), IllegalArgumentException.class);
+        assertThat(illegalArgumentException).hasMessage("Coordinate must greater than (%s, %s)",
+                MarsRover.DEFAULT_LOWER_LEFT_COORDINATE.getX(), MarsRover.DEFAULT_LOWER_LEFT_COORDINATE.getY());
     }
 }
