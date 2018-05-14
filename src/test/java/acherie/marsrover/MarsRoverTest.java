@@ -79,30 +79,30 @@ public class MarsRoverTest {
 
     @Test
     public void shouldYPlus1WhenNorthMove() {
-        MarsRover rover = new MarsRover(0, 0, N);
+        MarsRover rover = new MarsRover(2, 2, N);
         rover.exec(new MoveCommand());
-        assertThat(rover.position()).isEqualTo("0 1 " + N);
+        assertThat(rover.position()).isEqualTo("2 3 " + N);
     }
 
     @Test
     public void shouldXPlus1WhenEastMove() {
-        MarsRover rover = new MarsRover(0, 0, E);
+        MarsRover rover = new MarsRover(2, 2, E);
         rover.exec(new MoveCommand());
-        assertThat(rover.position()).isEqualTo("1 0 " + E);
+        assertThat(rover.position()).isEqualTo("3 2 " + E);
     }
 
     @Test
     public void shouldYMinus1WhenSouthMove() {
-        MarsRover rover = new MarsRover(0, 0, S);
+        MarsRover rover = new MarsRover(2, 2, S);
         rover.exec(new MoveCommand());
-        assertThat(rover.position()).isEqualTo("0 -1 " + S);
+        assertThat(rover.position()).isEqualTo("2 1 " + S);
     }
 
     @Test
     public void shouldXMinus1WhenWestMove() {
-        MarsRover rover = new MarsRover(0, 0, W);
+        MarsRover rover = new MarsRover(2, 2, W);
         rover.exec(new MoveCommand());
-        assertThat(rover.position()).isEqualTo("-1 0 " + W);
+        assertThat(rover.position()).isEqualTo("1 2 " + W);
     }
 
     @Test
@@ -125,4 +125,5 @@ public class MarsRoverTest {
         assertThat(illegalArgumentException).hasMessage("Coordinate must greater than (%s, %s)",
                 MarsRover.DEFAULT_LOWER_LEFT_COORDINATE.getX(), MarsRover.DEFAULT_LOWER_LEFT_COORDINATE.getY());
     }
+
 }
