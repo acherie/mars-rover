@@ -3,6 +3,8 @@ package acherie.marsrover;
 import acherie.marsrover.command.LeftPositionCommand;
 import acherie.marsrover.command.MoveCommand;
 import acherie.marsrover.command.RightPositionCommand;
+import acherie.marsrover.position.DirectionPosition;
+import acherie.marsrover.position.PositionFactory;
 import lombok.Getter;
 import lombok.Setter;
 

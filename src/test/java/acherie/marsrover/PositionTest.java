@@ -1,8 +1,9 @@
 package acherie.marsrover;
 
+import acherie.marsrover.position.DirectionPosition;
 import org.junit.Test;
 
-import static acherie.marsrover.PositionFactory.*;
+import static acherie.marsrover.position.PositionFactory.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**

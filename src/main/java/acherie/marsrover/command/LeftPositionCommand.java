@@ -1,6 +1,6 @@
 package acherie.marsrover.command;
 
-import acherie.marsrover.DirectionPosition;
+import acherie.marsrover.position.DirectionPosition;
 
 /**
  * @author wangjie

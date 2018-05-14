@@ -1,7 +1,7 @@
 package acherie.marsrover.command;
 
-import acherie.marsrover.DirectionPosition;
 import acherie.marsrover.MarsRover;
+import acherie.marsrover.position.DirectionPosition;
 import lombok.Setter;
 
 /**

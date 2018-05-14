@@ -1,4 +1,6 @@
-package acherie.marsrover;
+package acherie.marsrover.position;
+
+import acherie.marsrover.Direction;
 
 /**
  * @author wangjie
