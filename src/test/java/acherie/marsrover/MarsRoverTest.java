@@ -103,4 +103,11 @@ public class MarsRoverTest {
         rover.exec(new MoveCommand());
         assertThat(rover.position()).isEqualTo("-1 0 " + W);
     }
+
+    @Test
+    public void shouldSetCoordinateProperly() {
+        MarsRover rover = new MarsRover();
+        rover.setCoordinate(3, 4);
+        assertThat(rover.coordinate()).isEqualTo("3 4");
+    }
 }

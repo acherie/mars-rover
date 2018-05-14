@@ -4,6 +4,7 @@ import acherie.marsrover.command.LeftPositionCommand;
 import acherie.marsrover.command.MoveCommand;
 import acherie.marsrover.command.RightPositionCommand;
 import acherie.marsrover.position.DirectionPosition;
+import acherie.marsrover.position.Position;
 import acherie.marsrover.position.PositionFactory;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,8 +16,15 @@ import lombok.Setter;
 public class MarsRover {
 
     @Getter
+    private Position coordinate;
+
+    @Getter
     @Setter
     private DirectionPosition directionPosition;
+
+    public MarsRover() {
+
+    }
 
     public MarsRover(int x, int y, Direction direction) {
         this.directionPosition = PositionFactory.directionPosition(x, y, direction);
@@ -39,5 +47,13 @@ public class MarsRover {
     public void exec(MoveCommand moveCommand) {
         moveCommand.setRover(this);
         moveCommand.exec();
+    }
+
+    public void setCoordinate(int x, int y) {
+        this.coordinate = new Position(x, y);
+    }
+
+    public String coordinate() {
+        return this.coordinate.position();
     }
 }
