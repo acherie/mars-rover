@@ -1,8 +1,8 @@
 package acherie.marsrover;
 
-import acherie.marsrover.command.LeftCommand;
+import acherie.marsrover.command.LeftPositionCommand;
 import acherie.marsrover.command.MoveCommand;
-import acherie.marsrover.command.RightCommand;
+import acherie.marsrover.command.RightPositionCommand;
 import org.junit.Test;
 
 import static acherie.marsrover.Direction.*;
@@ -46,7 +46,7 @@ public class MarsRoverTest {
 
     private void testTurnLeftCommand(Direction original, Direction target) {
         MarsRover rover = new MarsRover(0, 0, original);
-        rover.exec(new LeftCommand());
+        rover.exec(new LeftPositionCommand());
         assertThat(rover.position()).isEqualTo("0 0 " + target);
     }
 
@@ -72,7 +72,7 @@ public class MarsRoverTest {
 
     private void testTurnRightCommand(Direction original, Direction target) {
         MarsRover rover = new MarsRover(0, 0, original);
-        rover.exec(new RightCommand());
+        rover.exec(new RightPositionCommand());
         assertThat(rover.position()).isEqualTo("0 0 " + target);
     }
 

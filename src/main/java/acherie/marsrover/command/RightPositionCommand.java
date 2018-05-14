@@ -6,10 +6,10 @@ import acherie.marsrover.DirectionPosition;
  * @author wangjie
  * @date 2018/5/12
  */
-public class MoveCommand extends AbstractPositionCommand {
+public class RightPositionCommand extends AbstractPositionCommand {
 
     @Override
     protected DirectionPosition onPosition(DirectionPosition position) {
-        return position.move();
+        return position.turnRight();
     }
 }

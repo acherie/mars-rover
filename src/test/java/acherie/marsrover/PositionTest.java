@@ -2,106 +2,50 @@ package acherie.marsrover;
 
 import org.junit.Test;
 
-import static acherie.marsrover.Direction.N;
-import static acherie.marsrover.Direction.W;
+import static acherie.marsrover.PositionFactory.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * @author wangjie
  * @date 2018/5/12
  */
-public class PositionTest {
+public class PositionTest extends BaseTest {
 
     @Test
     public void Position_ShouldConcat_WhenInit() {
         // given
-        Position position = new Position(0, 0, N);
+        DirectionPosition position = north(0, 0);
         // when
         String positionStr = position.position();
         // then
-        assertThat(positionStr).isEqualTo("0 0 " + N);
+        assertThat(positionStr).isEqualTo("0 0 " + NORTH);
     }
 
     @Test
-    public void shouldNorthWhenWestTurnNorth() {
-        // given
-        Position position = new Position(0, 0, W);
-        // when
-        Position newPosition = position.turn(N);
-        // then
-        assertThat(newPosition.position()).isEqualTo("0 0 " + N);
+    public void shouldYPlus1WhenNorthMove() {
+        DirectionPosition position = north(0, 0);
+        DirectionPosition newPosition = position.move();
+        assertThat(newPosition.position()).isEqualTo("0 1 " + NORTH);
     }
 
     @Test
-    public void shouldNorthWhenNorthTurnNorth() {
-        // given
-        Position position = new Position(0, 0, N);
-        // when
-        Position newPosition = position.turn(N);
-        // then
-        assertThat(newPosition.position()).isEqualTo("0 0 " + N);
+    public void shouldXPlus1WhenEastMove() {
+        DirectionPosition position = east(0, 0);
+        DirectionPosition newPosition = position.move();
+        assertThat(newPosition.position()).isEqualTo("1 0 " + EAST);
     }
 
     @Test
-    public void shouldXPlus1WhenXMove1() {
-        Position position = new Position(0, 0, N);
-        Position newPosition = position.moveX(1);
-        assertThat(newPosition)
-                .extracting(Position::getX, Position::getY, Position::getDirection)
-                .contains(position.getX() + 1, position.getY(), position.getDirection());
+    public void shouldYMinus1WhenSouthMove() {
+        DirectionPosition position = south(0, 0);
+        DirectionPosition newPosition = position.move();
+        assertThat(newPosition.position()).isEqualTo("0 -1 " + SOUTH);
     }
 
     @Test
-    public void shouldXPlus9WhenMove9() {
-        Position position = new Position(0, 0, N);
-        Position newPosition = position.moveX(9);
-        assertThat(newPosition)
-                .extracting(Position::getX, Position::getY, Position::getDirection)
-                .contains(position.getX() + 9, position.getY(), position.getDirection());
-    }
-
-    @Test
-    public void shouldXMinus2WhenMoveN2() {
-        Position position = new Position(0, 0, N);
-        Position newPosition = position.moveX(-2);
-        assertThat(newPosition)
-                .extracting(Position::getX, Position::getY, Position::getDirection)
-                .contains(position.getX() - 2, position.getY(), position.getDirection());
-    }
-
-    @Test
-    public void shouldYPlus1WhenMove1() {
-        Position position = new Position(0, 0, N);
-        Position newPosition = position.moveY(1);
-        assertThat(newPosition)
-                .extracting(Position::getX, Position::getY, Position::getDirection)
-                .containsExactly(position.getX(), position.getY() + 1, position.getDirection());
-    }
-
-    @Test
-    public void shouldYPlus0WhenMove0() {
-        Position position = new Position(0, 0, N);
-        Position newPosition = position.moveY(0);
-        assertThat(newPosition)
-                .extracting(Position::getX, Position::getY, Position::getDirection)
-                .containsExactly(position.getX(), position.getY(), position.getDirection());
-    }
-
-    @Test
-    public void shouldYPlus2WhenMove2() {
-        Position position = new Position(0, 0, N);
-        Position newPosition = position.moveY(2);
-        assertThat(newPosition)
-                .extracting(Position::getX, Position::getY, Position::getDirection)
-                .containsExactly(position.getX(), position.getY() + 2, position.getDirection());
-    }
-
-    @Test
-    public void shouldYMinus2WhenMoveN2() {
-        Position position = new Position(0, 0, N);
-        Position newPosition = position.moveY(-2);
-        assertThat(newPosition)
-                .extracting(Position::getX, Position::getY, Position::getDirection)
-                .containsExactly(position.getX(), position.getY() + (-2), position.getDirection());
+    public void shouldXMinus1WhenWestMove() {
+        DirectionPosition position = west(0, 0);
+        DirectionPosition newPosition = position.move();
+        assertThat(newPosition.position()).isEqualTo("-1 0 " + WEST);
     }
 }
