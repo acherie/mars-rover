@@ -82,4 +82,25 @@ public class MarsRoverTest {
         rover.exec(new MoveCommand());
         assertThat(rover.position()).isEqualTo("0 1 " + N);
     }
+
+    @Test
+    public void shouldXPlus1WhenEastMove() {
+        MarsRover rover = new MarsRover(0, 0, E);
+        rover.exec(new MoveCommand());
+        assertThat(rover.position()).isEqualTo("1 0 " + E);
+    }
+
+    @Test
+    public void shouldYMinus1WhenSouthMove() {
+        MarsRover rover = new MarsRover(0, 0, S);
+        rover.exec(new MoveCommand());
+        assertThat(rover.position()).isEqualTo("0 -1 " + S);
+    }
+
+    @Test
+    public void shouldXMinus1WhenWestMove() {
+        MarsRover rover = new MarsRover(0, 0, W);
+        rover.exec(new MoveCommand());
+        assertThat(rover.position()).isEqualTo("-1 0 " + W);
+    }
 }
