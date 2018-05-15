@@ -6,5 +6,23 @@ package acherie.marsrover.position;
  */
 public enum  Direction {
 
-    E, S, W, N
+    /**
+     * East
+     */
+    E,
+
+    /**
+     * South
+     */
+    S,
+
+    /**
+     * West
+     */
+    W,
+
+    /**
+     * North
+     */
+    N
 }
