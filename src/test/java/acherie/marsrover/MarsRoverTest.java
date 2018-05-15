@@ -151,6 +151,21 @@ public class MarsRoverTest {
         testThrowPositionOutOfBoundsExceptionWhenMoveOutRange(E);
     }
 
+    @Test
+    public void shouldThrowPositionOutOfBoundsExceptionWhenSouthMoveOutOfRange() {
+        testThrowPositionOutOfBoundsExceptionWhenMoveOutRange(S);
+    }
+
+    @Test
+    public void shouldThrowPositionOutOfBoundsExceptionWhenWestMoveOutOfRange() {
+        testThrowPositionOutOfBoundsExceptionWhenMoveOutRange(W);
+    }
+
+    @Test
+    public void shouldThrowPositionOutOfBoundsExceptionWhenNorthMoveOutOfRange() {
+        testThrowPositionOutOfBoundsExceptionWhenMoveOutRange(N);
+    }
+
     private void testThrowPositionOutOfBoundsExceptionWhenMoveOutRange(Direction direction) {
         MarsRover rover = new MarsRover(direction);
         rover.setCoordinate(1, 1);
@@ -159,5 +174,23 @@ public class MarsRoverTest {
             rover.exec(new MoveCommand());
         });
         assertThat(throwable).isExactlyInstanceOf(PositionOutOfBoundsException.class);
+    }
+
+    @Test
+    public void should13NWhen55Coordinate12NPositionLMLMLMLMMCommand() {
+        MarsRover rover = new MarsRover();
+        rover.setCoordinate(5, 5);
+        rover.setDirectionPosition(1, 2, N);
+        rover.exec(new LeftPositionCommand());
+        rover.exec(new MoveCommand());
+        rover.exec(new LeftPositionCommand());
+        rover.exec(new MoveCommand());
+        rover.exec(new LeftPositionCommand());
+        rover.exec(new MoveCommand());
+        rover.exec(new LeftPositionCommand());
+        rover.exec(new MoveCommand());
+        rover.exec(new MoveCommand());
+
+        assertThat(rover.position()).isEqualTo("1 3 N");
     }
 }

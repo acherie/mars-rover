@@ -56,6 +56,10 @@ public class MarsRover {
         moveCommand.exec();
     }
 
+    public void setDirectionPosition(int x, int y, Direction direction) {
+        this.directionPosition = PositionFactory.directionPosition(x, y, direction);
+    }
+
     public void setDirectionPosition(DirectionPosition position) {
 
         if (!areaContainsPosition(position)) {
