@@ -1,6 +1,5 @@
 package acherie.marsrover.position;
 
-import acherie.marsrover.Direction;
 import acherie.marsrover.exception.UnsupportedDirectionException;
 
 /**

@@ -1,6 +1,5 @@
 package acherie.marsrover.position;
 
-import acherie.marsrover.Direction;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 

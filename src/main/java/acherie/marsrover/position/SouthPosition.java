@@ -1,7 +1,5 @@
 package acherie.marsrover.position;
 
-import acherie.marsrover.Direction;
-
 /**
  * @author wangjie
  * @date 2018/5/13

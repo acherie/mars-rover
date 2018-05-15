@@ -4,9 +4,10 @@ import acherie.marsrover.command.LeftPositionCommand;
 import acherie.marsrover.command.MoveCommand;
 import acherie.marsrover.command.RightPositionCommand;
 import acherie.marsrover.exception.PositionOutOfBoundsException;
+import acherie.marsrover.position.Direction;
 import org.junit.Test;
 
-import static acherie.marsrover.Direction.*;
+import static acherie.marsrover.position.Direction.*;
 import static org.assertj.core.api.Assertions.*;
 
 /**
