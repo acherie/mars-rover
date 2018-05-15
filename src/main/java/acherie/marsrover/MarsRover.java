@@ -3,11 +3,11 @@ package acherie.marsrover;
 import acherie.marsrover.command.LeftPositionCommand;
 import acherie.marsrover.command.MoveCommand;
 import acherie.marsrover.command.RightPositionCommand;
+import acherie.marsrover.exception.PositionOutOfBoundsException;
 import acherie.marsrover.position.DirectionPosition;
 import acherie.marsrover.position.Position;
 import acherie.marsrover.position.PositionFactory;
 import lombok.Getter;
-import lombok.Setter;
 
 /**
  * @author wangjie
@@ -23,7 +23,6 @@ public class MarsRover {
     private Position lowerLeftCoordinate = DEFAULT_LOWER_LEFT_COORDINATE;
 
     @Getter
-    @Setter
     private DirectionPosition directionPosition;
 
     public MarsRover() {
@@ -32,6 +31,10 @@ public class MarsRover {
 
     public MarsRover(int x, int y, Direction direction) {
         this.directionPosition = PositionFactory.directionPosition(x, y, direction);
+    }
+
+    public MarsRover(Direction direction) {
+        this(0, 0, direction);
     }
 
     public String position() {
@@ -53,6 +56,33 @@ public class MarsRover {
         moveCommand.exec();
     }
 
+    public void setDirectionPosition(DirectionPosition position) {
+
+        if (!areaContainsPosition(position)) {
+            throw new PositionOutOfBoundsException();
+        }
+        this.directionPosition = position;
+    }
+
+    private boolean areaContainsPosition(DirectionPosition position) {
+        return isPositionGreaterThanLowerLeftCoordinate(position)
+                && isPositionLessThanCoordinate(position);
+    }
+
+    private boolean isPositionGreaterThanLowerLeftCoordinate(DirectionPosition position) {
+        return position.getX() >= lowerLeftCoordinate.getX()
+                && position.getY() >= lowerLeftCoordinate.getY();
+    }
+
+    private boolean isPositionLessThanCoordinate(DirectionPosition position) {
+        if (this.coordinate == null) {
+            return true;
+        }
+
+        return position.getX() <= coordinate.getX()
+                && position.getY() <= coordinate.getY();
+    }
+
     public void setCoordinate(int x, int y) {
 
         Position position = new Position(x, y);
@@ -71,5 +101,11 @@ public class MarsRover {
 
     public String coordinate() {
         return this.coordinate.position();
+    }
+
+    public void checkInit() {
+        if (directionPosition == null) {
+            throw new IllegalArgumentException("Position must be set before execute command");
+        }
     }
 }

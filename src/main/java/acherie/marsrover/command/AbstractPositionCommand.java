@@ -2,7 +2,6 @@ package acherie.marsrover.command;
 
 import acherie.marsrover.MarsRover;
 import acherie.marsrover.position.DirectionPosition;
-import lombok.Setter;
 
 /**
  * @author wangjie
@@ -10,8 +9,12 @@ import lombok.Setter;
  */
 public abstract class AbstractPositionCommand implements Command {
 
-    @Setter
     private MarsRover rover;
+
+    public void setRover(MarsRover rover) {
+        rover.checkInit();
+        this.rover = rover;
+    }
 
     @Override
     public void exec() {

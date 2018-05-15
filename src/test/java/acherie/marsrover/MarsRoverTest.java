@@ -3,17 +3,23 @@ package acherie.marsrover;
 import acherie.marsrover.command.LeftPositionCommand;
 import acherie.marsrover.command.MoveCommand;
 import acherie.marsrover.command.RightPositionCommand;
+import acherie.marsrover.exception.PositionOutOfBoundsException;
 import org.junit.Test;
 
 import static acherie.marsrover.Direction.*;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.catchThrowableOfType;
+import static org.assertj.core.api.Assertions.*;
 
 /**
  * @author wangjie
  * @date 2018/5/12
  */
 public class MarsRoverTest {
+
+    @Test
+    public void shouldAt00PositionWhenNotSetPosition() {
+        MarsRover rover = new MarsRover(E);
+        assertThat(rover.position()).isEqualTo("0 0 E");
+    }
 
     @Test
     public void shouldAtRightPositionWhenInit() {
@@ -47,6 +53,7 @@ public class MarsRoverTest {
 
     private void testTurnLeftCommand(Direction original, Direction target) {
         MarsRover rover = new MarsRover(0, 0, original);
+        rover.setCoordinate(5, 5);
         rover.exec(new LeftPositionCommand());
         assertThat(rover.position()).isEqualTo("0 0 " + target);
     }
@@ -73,6 +80,7 @@ public class MarsRoverTest {
 
     private void testTurnRightCommand(Direction original, Direction target) {
         MarsRover rover = new MarsRover(0, 0, original);
+        rover.setCoordinate(5, 5);
         rover.exec(new RightPositionCommand());
         assertThat(rover.position()).isEqualTo("0 0 " + target);
     }
@@ -126,4 +134,30 @@ public class MarsRoverTest {
                 MarsRover.DEFAULT_LOWER_LEFT_COORDINATE.getX(), MarsRover.DEFAULT_LOWER_LEFT_COORDINATE.getY());
     }
 
+    @Test
+    public void shouldThrowIllegalArgumentExceptionWhenExecCommandIfNotSetPosition() {
+        MarsRover rover = new MarsRover();
+        IllegalArgumentException exception =
+                catchThrowableOfType(() -> rover.exec(new MoveCommand()), IllegalArgumentException.class);
+        assertThat(exception).hasMessage("Position must be set before execute command");
+
+        IllegalArgumentException turnException =
+                catchThrowableOfType(() -> rover.exec(new LeftPositionCommand()), IllegalArgumentException.class);
+        assertThat(turnException).hasMessage("Position must be set before execute command");
+    }
+
+    @Test
+    public void shouldThrowPositionOutOfBoundsExceptionWhenEastMoveOutOfRange() {
+        testThrowPositionOutOfBoundsExceptionWhenMoveOutRange(E);
+    }
+
+    private void testThrowPositionOutOfBoundsExceptionWhenMoveOutRange(Direction direction) {
+        MarsRover rover = new MarsRover(direction);
+        rover.setCoordinate(1, 1);
+        Throwable throwable = catchThrowable(() -> {
+            rover.exec(new MoveCommand());
+            rover.exec(new MoveCommand());
+        });
+        assertThat(throwable).isExactlyInstanceOf(PositionOutOfBoundsException.class);
+    }
 }
